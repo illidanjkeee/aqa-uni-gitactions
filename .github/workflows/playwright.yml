@@ -14,14 +14,14 @@ jobs:
 
     services:
       web:
-        image: node:14
+        image: node:20 # Updated to match the Node.js version used in the steps
         ports:
           - 4200:4200
         options: >-
           --health-cmd="curl --fail http://localhost:4200 || exit 1"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+          --health-interval=30s # Increased interval to allow more time for the server to start
+          --health-timeout=10s
+          --health-retries=10 # Increased retries for better resilience
 
     steps:
       - name: Checkout repository
